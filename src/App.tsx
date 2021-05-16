@@ -2,6 +2,9 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./configs/theme";
 import styled from "styled-components";
+import AuthFlow from "./components/views/AuthFlow";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Layout from "./components/templates/Layout";
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -26,20 +29,12 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper className="App">
-        <Header className="App-header">
-          <h1>Welcome to your new Side Project</h1>
-          <p>
-            Get started by editing <code>src/App.tsx</code>
-          </p>
-          <Link
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </Link>
-        </Header>
+        <Router>
+          <Switch>
+            <Route exact path="/login" component={AuthFlow} />
+            <Layout />
+          </Switch>
+        </Router>
       </AppWrapper>
     </ThemeProvider>
   );

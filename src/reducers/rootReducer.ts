@@ -1,14 +1,18 @@
 import { combineReducers } from "redux";
-import reducer, { ReducerInterface } from "./reducer";
+import userReducer, { IUserReducer } from "./userReducer";
+import placeReducer, { IPlaceReducer } from "./placeReducer";
 
 export interface IStore {
-  reducer: ReducerInterface;
+  user: IUserReducer;
+  places: IPlaceReducer;
 }
 
 const rootReducer = combineReducers({
-  reducer: reducer,
+  user: userReducer,
+  places: placeReducer,
 });
 
-export const yourReducerSelector = (state: IStore) => state.reducer;
+export const userSelector = (state: IStore) => state.user;
+export const placesSelector = (state: IStore) => state.places;
 
 export default rootReducer;
