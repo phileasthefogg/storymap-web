@@ -9,7 +9,7 @@ interface IPlacesCard {
 const Wrapper = styled.div`
   width: 45vw;
   min-height: 30vh;
-  border: 1px solid grey;
+  border: 1px solid ${({ theme }) => theme.colors.grey};
   margin-top: 1rem;
 `;
 

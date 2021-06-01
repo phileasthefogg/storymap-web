@@ -7,7 +7,7 @@ import { RouteProps } from "react-router";
 const PrivateRoute = (props: RouteProps) => {
   const user = useSelector(userSelector);
   console.log("privateroute", user);
-  if (user) {
+  if (user.role) {
     return <Route {...props} />;
   }
 

@@ -1,19 +1,16 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+// import React, { useEffect } from "react";
+// import styled from "styled-components";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { Auth, firebase } from "../../helpers/firebase";
 import { userSelector } from "../../reducers/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-interface IAuthFlow {}
-
-const AuthFlow = ({}: IAuthFlow) => {
+const AuthFlow = () => {
   const user = useSelector(userSelector);
   const dispatch = useDispatch();
   //handle User already signed in
   if (user.uid) return <Redirect to="/map" />;
-
   // Configure FirebaseUI.
   const uiConfig = {
     // Popup signin flow rather than redirect flow.

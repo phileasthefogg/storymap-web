@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { ITheme } from "../../configs/theme";
 import { Link } from "react-router-dom";
 

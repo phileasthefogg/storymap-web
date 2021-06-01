@@ -1,9 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 
-interface IProfileView {}
-
-const ProfileView = ({}: IProfileView) => {
+const ProfileView = () => {
   return <div>ProfileView</div>;
 };
 

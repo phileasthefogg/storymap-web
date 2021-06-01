@@ -1,9 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 
-interface IMemoriesView {}
-
-const MemoriesView = ({}: IMemoriesView) => {
+const MemoriesView = () => {
   return <div>MemoriesView</div>;
 };
 

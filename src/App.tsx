@@ -5,27 +5,14 @@ import styled from "styled-components";
 import AuthFlow from "./components/views/AuthFlow";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Layout from "./components/templates/Layout";
+import useAuth from "./hooks/useAuth";
 
 const AppWrapper = styled.div`
   text-align: center;
 `;
 
-const Header = styled.header`
-  background-color: ${({ theme }) => theme.colors.background};
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: ${({ theme }) => theme.colors.white};
-`;
-
-const Link = styled.a`
-  color: #61dafb;
-`;
-
 const App = () => {
+  useAuth();
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper className="App">

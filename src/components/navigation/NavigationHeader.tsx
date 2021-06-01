@@ -4,7 +4,9 @@ import NavLink from "../atoms/NavLink";
 import { userSelector } from "../../reducers/rootReducer";
 import { useSelector } from "react-redux";
 
-interface INavigationHeader {}
+//TODO: create a helper function to access these login/logout auth funcs.
+import { firebase } from "../../helpers/firebase";
+import { useDispatch } from "react-redux";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -14,8 +16,9 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const NavigationHeader = ({}: INavigationHeader) => {
+const NavigationHeader = () => {
   const user = useSelector(userSelector);
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       {user.role === "Curator" ? (
@@ -25,13 +28,41 @@ const NavigationHeader = ({}: INavigationHeader) => {
       <NavLink to="/places" title="Places" />
       <NavLink to="/memories" title="Memories" />
       <NavLink to="/profile" title="Profile" />
-      <NavLink to="/login" title="Login" />
       {user.uid ? (
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <span>Welcome back {user.displayName}!</span>
-          <span>You are signed in as a {user.role}</span>
-        </div>
-      ) : null}
+        <>
+          <span
+            style={{ textDecoration: "underline" }}
+            onClick={() => {
+              firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                  dispatch({
+                    type: "UPDATE_USER",
+                    payload: {
+                      uid: "",
+                      displayName: "",
+                      email: null,
+                      photoUrl: null,
+                      role: null,
+                    }, //TODO: import initial state from user reducer to use here
+                  });
+                })
+                .catch((errr) => {
+                  console.log("navHeader signout ERRR", errr);
+                });
+            }}
+          >
+            Logout
+          </span>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span>Welcome back {user.displayName}!</span>
+            <span>You are signed in as a {user.role}</span>
+          </div>
+        </>
+      ) : (
+        <NavLink to="/login" title="Login" />
+      )}
     </Wrapper>
   );
 };

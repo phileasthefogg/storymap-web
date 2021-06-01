@@ -5,8 +5,6 @@ import styled from "styled-components";
 import PlacesList from "../organisms/PlacesList";
 import { getPlaces } from "../../actions/placeActions";
 
-interface IPlacesView {}
-
 const Wrapper = styled.div`
   height: 100%;
   width: 100%;
@@ -14,7 +12,7 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 `;
 
-const PlacesView = ({}: IPlacesView) => {
+const PlacesView = () => {
   const dispatch = useDispatch();
   const places = useSelector(placesSelector);
   useEffect(() => {
@@ -24,7 +22,7 @@ const PlacesView = ({}: IPlacesView) => {
       dispatch({ type: "SET_PLACES_LIST", payload: v.concat(v, v, v, v) });
       dispatch({ type: "SET_PLACES_LOADING", payload: false });
     });
-  }, []);
+  }, [places.list, dispatch]);
   return (
     <Wrapper>
       <PlacesList places={places.list} />

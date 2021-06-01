@@ -1,7 +1,9 @@
 const colors = {
   primary: "#4c6fff",
   secondary: "#4DC9FF",
+  error: "tomato",
   black: "#000000",
+  grey: "a6a6a6",
   white: "#ffffff",
   background: "#282c34",
 };

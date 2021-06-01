@@ -7,4 +7,10 @@ export interface IMemory {
   placeId: string;
 }
 
+export interface INewMemory {
+  title: string;
+  body: string;
+  photo: any | null;
+}
+
 export type TMemorySlice = IMemory[];

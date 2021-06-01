@@ -1,6 +1,5 @@
 import { IPlace } from "../models/places";
 import { Firestore } from "../helpers/firebase";
-import { Dispatch } from "react";
 export type TPlaceActions =
   | { type: "SET_PLACES_LOADING"; payload: boolean }
   | { type: "SET_PLACE_DETAIL"; payload: IPlace | null }

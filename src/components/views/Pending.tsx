@@ -1,9 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 
-interface IPendingView {}
-
-const PendingView = ({}: IPendingView) => {
+const PendingView = () => {
   return <div>PendingView</div>;
 };
 
