@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../reducers/rootReducer";
-import { Auth } from "../helpers/firebase";
+import { app } from "../helpers/firebase";
 
 const useAuth = () => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   useEffect(() => {
-    Auth.onAuthStateChanged((usr: any) => {
+    app.auth().onAuthStateChanged((usr: any) => {
       if (usr) {
         usr
           .getIdTokenResult()

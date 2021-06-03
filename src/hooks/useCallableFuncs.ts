@@ -1,10 +1,15 @@
 import { useMemo } from "react";
-import { Functions } from "../helpers/firebase";
+import { app } from "../helpers/firebase";
 
 const useCallableFuncs = () => {
+  // if (window.location.hostname === "localhost") {
+  //   Functions.useEmulator("localhost", 5001);
+  // }
   const callables = useMemo(
     () => ({
-      addCurator: Functions.httpsCallable("addCurator"),
+      addCurator: app.functions().httpsCallable("addCurator"),
+      submitRequest: app.functions().httpsCallable("submitRequest"),
+      approveRequest: app.functions().httpsCallable("approveRequest"),
     }),
     []
   );

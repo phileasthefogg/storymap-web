@@ -1,5 +1,5 @@
 import { ILocation } from "../models/locations";
-import { Firestore } from "../helpers/firebase";
+import { app } from "../helpers/firebase";
 import { Dispatch } from "react";
 export type TLocationActions =
   | { type: "SET_LOCATIONS_LOADING"; payload: boolean }
@@ -7,7 +7,7 @@ export type TLocationActions =
   | { type: "SET_LOCATIONS_LIST"; payload: ILocation[] };
 
 export const getLocations = () => {
-  const locationsRef = Firestore.collection("locations");
+  const locationsRef = app.firestore().collection("locations");
   return (dispatch: Dispatch<TLocationActions>) => {
     dispatch({ type: "SET_LOCATIONS_LOADING", payload: true });
     locationsRef
@@ -25,7 +25,7 @@ export const getLocations = () => {
 };
 
 export const getLocationsAfter = (location: any) => {
-  const locationsRef = Firestore.collection("locations");
+  const locationsRef = app.firestore().collection("locations");
   return locationsRef
     .limit(10)
     .orderBy("lastModified", "desc")

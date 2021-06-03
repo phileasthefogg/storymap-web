@@ -5,7 +5,7 @@ import { userSelector } from "../../reducers/rootReducer";
 import { useSelector } from "react-redux";
 
 //TODO: create a helper function to access these login/logout auth funcs.
-import { firebase } from "../../helpers/firebase";
+import { app } from "../../helpers/firebase";
 import { useDispatch } from "react-redux";
 
 const Wrapper = styled.div`
@@ -33,7 +33,7 @@ const NavigationHeader = () => {
           <span
             style={{ textDecoration: "underline" }}
             onClick={() => {
-              firebase
+              app
                 .auth()
                 .signOut()
                 .then(() => {

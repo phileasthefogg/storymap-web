@@ -1,7 +1,8 @@
 // import React, { useEffect } from "react";
 // import styled from "styled-components";
+import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import { Auth, firebase } from "../../helpers/firebase";
+import { app } from "../../helpers/firebase";
 import { userSelector } from "../../reducers/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -25,13 +26,16 @@ const AuthFlow = () => {
     callbacks: {
       signInSuccessWithAuthResult: (authRes: any) => {
         const { uid, displayName, email, photoUrl } = authRes.user;
-        Auth.currentUser?.getIdTokenResult().then((token) => {
-          const role = token.claims.isCurator ? "Curator" : "User";
-          dispatch({
-            type: "UPDATE_USER",
-            payload: { uid, displayName, email, photoUrl, role },
+        app
+          .auth()
+          .currentUser?.getIdTokenResult()
+          .then((token) => {
+            const role = token.claims.isCurator ? "Curator" : "User";
+            dispatch({
+              type: "UPDATE_USER",
+              payload: { uid, displayName, email, photoUrl, role },
+            });
           });
-        });
         // Avoid redirects after sign-in by returning false.
         return false;
       },
@@ -39,7 +43,7 @@ const AuthFlow = () => {
   };
   return (
     <div>
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={Auth} />
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={app.auth()} />
     </div>
   );
 };

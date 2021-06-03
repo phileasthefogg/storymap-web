@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { TFormState } from "./MapForm";
 import Button from "../atoms/Button";
+import useCallableFuncs from "../../hooks/useCallableFuncs";
 
 interface IMapFormSummary {
   form: TFormState;
@@ -62,6 +63,7 @@ const Value = styled.span`
 `;
 
 const MapFormSummary = ({ form, closeModal }: IMapFormSummary) => {
+  const callables = useCallableFuncs();
   return (
     <Wrapper>
       <Summary>
